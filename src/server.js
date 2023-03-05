@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8080;
 
 const main = async () => {
     try {
-        sequelize.sync();  // { force: true } para borrar la base de datos
+        sequelize.sync({force: true});  // { force: true } para borrar la base de datos  { alter: true } para actualizar la base de datos
         console.log("DB connected");
         app.listen(PORT);
         console.log(`Server running on port ${PORT}`);
