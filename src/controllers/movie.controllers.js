@@ -16,7 +16,7 @@ const create = catchError(async(req, res) => {
 
 const getOne = catchError(async(req, res) => {
     const { id } = req.params;
-    const result = await Movie.findByPk(id);
+    const result = await Movie.findByPk(id, { include: [Director, Actor, Genre]});
     if(!result) return res.sendStatus(404);
     return res.json(result);
 });
@@ -48,7 +48,7 @@ const setMovieDirector = catchError(async(req, res) => {
 const setMovieActor = catchError(async(req, res) => {
   const { id } = req.params;
   const movie = await Movie.findByPk(id);
-  await movie.setDirectors(req.body);
+  await movie.setActors(req.body);
   const actor = await movie.getActors();
   return res.json(actor);
 });
@@ -56,7 +56,7 @@ const setMovieActor = catchError(async(req, res) => {
 const setMovieGenre = catchError(async(req, res) => {
   const { id } = req.params;
   const movie = await Movie.findByPk(id);
-  await movie.setDirectors(req.body);
+  await movie.setGenres(req.body);
   const genre = await movie.getGenres();
   return res.json(genre);
 });
