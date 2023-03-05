@@ -15,7 +15,7 @@ const Actor = sequelize.define('actor', {
     allowNull: false
   },
   image: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false
   },
   birthday: {
